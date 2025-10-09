@@ -1,17 +1,13 @@
 package org.elasticsearch.index.analysis;
 
-import java.net.URI;
-
+import eu.hlavki.text.lemmagen.LemmatizerFactory;
+import eu.hlavki.text.lemmagen.api.Lemmatizer;
 import java.io.File;
 import java.io.FileInputStream;
-
-import eu.hlavki.text.lemmagen.api.Lemmatizer;
-import eu.hlavki.text.lemmagen.LemmatizerFactory;
-
+import java.net.URI;
 import org.apache.lucene.analysis.TokenStream;
-
-import org.elasticsearch.env.Environment;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.env.Environment;
 
 public class LemmagenFilterFactory extends AbstractTokenFilterFactory {
 
@@ -20,7 +16,7 @@ public class LemmagenFilterFactory extends AbstractTokenFilterFactory {
 
   public LemmagenFilterFactory(Environment env, String name, Settings settings) {
 
-    super(name, settings);
+    super(name);
 
     String lexicon = settings.get("lexicon", null);
     String lexiconPath = settings.get("lexicon_path", null);
