@@ -9,8 +9,6 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.plugin.analysis.lemmagen.AnalysisLemmagenPlugin;
 import org.elasticsearch.test.ESTestCase;
 import org.elasticsearch.test.ESTokenStreamTestCase;
-import org.elasticsearch.cluster.metadata.IndexMetadata;
-import org.elasticsearch.Version;
 import org.elasticsearch.env.Environment;
 
 import java.io.IOException;
@@ -52,8 +50,9 @@ public class LemmagenAnalysisTest extends ESTokenStreamTestCase {
 
     String path = "/org/elasticsearch/index/analysis/lemmagen.json";
 
-    Settings settings = Settings.builder().loadFromStream(path, getClass().getResourceAsStream(path), false)
-        .put(IndexMetadata.SETTING_VERSION_CREATED, Version.CURRENT).put(Environment.PATH_HOME_SETTING.getKey(), home)
+    Settings settings = Settings.builder()
+        .loadFromStream(path, getClass().getResourceAsStream(path), false)
+        .put(Environment.PATH_HOME_SETTING.getKey(), home)
         .build();
 
     return AnalysisTestsHelper.createTestAnalysisFromSettings(settings, new AnalysisLemmagenPlugin());
